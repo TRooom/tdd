@@ -37,8 +37,8 @@ namespace TagsCloudVisualization
         public void TearDown()
         {
             var name = TestContext.CurrentContext.Test.Name;
-            var time = DateTime.Now.ToString("dd:hh:mm:ss", CultureInfo.InvariantCulture);
-            var path = Path.Combine(TestDirectory, $"{name}-{time}.jpg");
+            var time = DateTime.Now.ToString("dd-hh-mm-ss", CultureInfo.InvariantCulture);
+            var path = Path.Combine(LogsDirectory, $"{name};{time}.png");
             var testResult = TestContext.CurrentContext.Result.Outcome;
             if (!testResult.Equals(ResultState.Failure) && !testResult.Equals(ResultState.Error)) return;
             CloudVisualizator.SaveCloud(Rectangles, path);
@@ -73,7 +73,7 @@ namespace TagsCloudVisualization
         {
             var added = new List<Rectangle>();
             var lasAdded = new Point();
-            var size = new Size(2, 2);
+            var size = new Size(15,15);
             var diag = Math.Sqrt(size.Height * size.Height + size.Width * size.Width);
             var count = 100;
             for (int i = 0; i < count; i++)
@@ -84,7 +84,7 @@ namespace TagsCloudVisualization
             }
             var distance = Math.Sqrt(lasAdded.Y * lasAdded.Y + lasAdded.X * lasAdded.X);
             distance.Should().BeLessThan((int) ((diag * count / 4) * Math.Sqrt(8)));
-            Assert.Fail();
+            //Assert.Fail(); Fail test to create image
         }
 
         public Rectangle AddRectangleInCloud(Size size)

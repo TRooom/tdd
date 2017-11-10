@@ -20,7 +20,7 @@ namespace TagsCloudVisualization
                 var newY = tag.Y + imageSize.Height / 2;
                 graphics.DrawRectangle(pen, new Rectangle(new Point(newX, newY), tag.Size));
             }
-            image.Save(path, ImageFormat.Jpeg);
+            image.Save(path, ImageFormat.Png);
            Console.Write("");
         }
 
