@@ -9,7 +9,7 @@ namespace TagsCloudVisualization
 {
     public static class PointExtensions
     {
-        public static int GetDistance(this Point point)
-            => point.X * point.X + point.Y * point.Y;
+        public static int GetDistanceToZero(this Point point)
+            => (int) Math.Sqrt(point.X * point.X + point.Y * point.Y);
     }
 }

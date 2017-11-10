@@ -28,5 +28,17 @@ namespace TagsCloudVisualization
             step += 0.1;
             return new Point(x, y);
         }
+
+        public IEnumerable<Point> GetAllPoints()
+        {
+            var step = 0d;
+            while (true)
+            {
+                var x = (int) (step * a * Math.Cos(step * phi)) + center.X;
+                var y = (int) (step * a * Math.Sin(step * phi)) + center.Y;
+                step += 0.1;
+                yield return new Point(x, y);
+            }
+        }
     }
 }

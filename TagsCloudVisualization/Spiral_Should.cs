@@ -11,23 +11,23 @@ namespace TagsCloudVisualization
 {
     class Spiral_Should
     {
-        public Spiral DefaultSpiral;
+        private Spiral defaultSpiral;
 
         [SetUp]
         public void SetUp()
         {
-            DefaultSpiral = new Spiral(new Point(0, 0));
+            defaultSpiral = new Spiral(new Point(0, 0));
         }
 
         [Test]
         public void DefaultSpiral_ReturnZero_WhenFirstCalled()
         {
-            var point = DefaultSpiral.CalculateNewLocation();
+            var point = defaultSpiral.CalculateNewLocation();
             point.Should().Be(new Point(0, 0));
         }
 
         [Test]
-        public void CastomSpiral_ReturnCenter_WhenFirstCalled()
+        public void CustomSpiral_ReturnCenter_WhenFirstCalled()
         {
             var center = new Point(2, 5);
             var customSpiral = new Spiral(center);
@@ -39,12 +39,10 @@ namespace TagsCloudVisualization
         public void ReturnDistantPoint_ForNextCall()
         {
             var point = default(Point);
-            while (point.Equals(default(Point)))
-                point = DefaultSpiral.CalculateNewLocation();
-            var nextPoint = DefaultSpiral.CalculateNewLocation();
+            var nextPoint = defaultSpiral.CalculateNewLocation();
             for (int i = 0; i < 20; i++)
-                nextPoint = DefaultSpiral.CalculateNewLocation();
-            point.GetDistance().Should().BeLessThan(nextPoint.GetDistance());
+                nextPoint = defaultSpiral.CalculateNewLocation();
+            point.GetDistanceToZero().Should().BeLessThan(nextPoint.GetDistanceToZero());
         }
     }
 }

@@ -7,7 +7,10 @@ namespace TagsCloudVisualization
 {
     public static class CloudVisualizator
     {
-        public static void SaveCloud(List<Rectangle> tags, string path, Color background = default(Color), Pen pen = null)
+        private static readonly Size defaultSizrSize = new Size(50, 50);
+
+        public static void SaveCloud(List<Rectangle> tags, string path, Color background = default(Color),
+            Pen pen = null)
         {
             var imageSize = GetSize(tags);
             var image = new Bitmap(imageSize.Width, imageSize.Height);
@@ -21,11 +24,12 @@ namespace TagsCloudVisualization
                 graphics.DrawRectangle(pen, new Rectangle(new Point(newX, newY), tag.Size));
             }
             image.Save(path, ImageFormat.Png);
-           Console.Write("");
         }
 
         private static Size GetSize(List<Rectangle> rectangles)
         {
+            if (rectangles.Count == 0)
+                return defaultSizrSize;
             var yMax = int.MinValue;
             var xMax = int.MinValue;
             foreach (var rect in rectangles)
