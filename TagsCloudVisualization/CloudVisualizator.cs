@@ -16,7 +16,7 @@ namespace TagsCloudVisualization
             var image = new Bitmap(imageSize.Width, imageSize.Height);
             var graphics = Graphics.FromImage(image);
             graphics.Clear(background);
-            pen = pen ?? new Pen(Color.BlueViolet, 1);
+            pen = pen ?? new Pen(Color.BlueViolet, 2);
             foreach (var tag in tags)
             {
                 var newX = tag.X + imageSize.Width / 2;
