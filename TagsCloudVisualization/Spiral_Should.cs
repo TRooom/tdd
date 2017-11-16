@@ -36,13 +36,13 @@ namespace TagsCloudVisualization
         }
 
         [Test, Timeout(100)]
-        public void ReturnDistantPoint_ForNextCall()
+        public void ReturnDifferentPoint_AfterFewCalls()
         {
-            var point = default(Point);
+            var point = defaultSpiral.CalculateNewLocation();
             var nextPoint = defaultSpiral.CalculateNewLocation();
             for (int i = 0; i < 20; i++)
                 nextPoint = defaultSpiral.CalculateNewLocation();
-            point.GetDistanceToZero().Should().BeLessThan(nextPoint.GetDistanceToZero());
+            point.Should().NotBe(nextPoint.GetDistanceToZero());
         }
     }
 }

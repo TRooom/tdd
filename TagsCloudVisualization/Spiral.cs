@@ -12,7 +12,7 @@ namespace TagsCloudVisualization
         private readonly Point center;
         private readonly double a;
         private readonly double phi;
-        private double step = 0;
+        private double length = 0;
 
         public Spiral(Point center, double a = 5, double phi = 50)
         {
@@ -21,22 +21,22 @@ namespace TagsCloudVisualization
             this.phi = phi;
         }
 
-        public Point CalculateNewLocation()
+        public Point CalculateNewLocation(double step = 0.01)
         {
-            var x = (int) (step * a * Math.Cos(step * phi)) + center.X;
-            var y = (int) (step * a * Math.Sin(step * phi)) + center.Y;
-            step += 0.1;
+            var x = (int) (length * a * Math.Cos(length * phi)) + center.X;
+            var y = (int) (length * a * Math.Sin(length * phi)) + center.Y;
+            length += step;
             return new Point(x, y);
         }
 
-        public IEnumerable<Point> GetAllPoints()
+        public IEnumerable<Point> GetAllPoints(double step = 0.01)
         {
-            var step = 0d;
+            var length = 0d;
             while (true)
             {
-                var x = (int) (step * a * Math.Cos(step * phi)) + center.X;
-                var y = (int) (step * a * Math.Sin(step * phi)) + center.Y;
-                step += 0.1;
+                var x = (int) (length * a * Math.Cos(length * phi)) + center.X;
+                var y = (int) (length * a * Math.Sin(length * phi)) + center.Y;
+                length += step;
                 yield return new Point(x, y);
             }
         }

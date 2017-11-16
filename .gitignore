@@ -195,4 +195,11 @@ FakesAssemblies/
 # Visual Studio 6 workspace options file
 *.opt
 
+#My working files
+Testing/
+TestingProject/
+
+#Logs
+[Ll]ogs/
+
 *Solved.cs

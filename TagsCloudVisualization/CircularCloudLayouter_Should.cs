@@ -85,7 +85,7 @@ namespace TagsCloudVisualization
         public void GenerateAndSaveCloud()
         {
             var rnd = new Random();
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 1000; i++)
                 AddRectangleInCloud(new Size(rnd.Next(10, 50), rnd.Next(10, 50)));
             Assert.Fail();
         }
